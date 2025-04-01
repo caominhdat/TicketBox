@@ -18,6 +18,7 @@ class BaseModel(models.Model):
 
 class Category(BaseModel):
     name = models.CharField(max_length=50, null=False)
+    image = models.ImageField(upload_to='category/%Y/%m', null=True)
 
     def __str__(self):
         return self.name
@@ -26,7 +27,7 @@ class Category(BaseModel):
 class Event(BaseModel):
     name = models.CharField(max_length=100, null=False)
     description = models.TextField()
-    image = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='event/%Y/%m', null=True)
     address = models.CharField(max_length=100, null=True)
     map = models.CharField(max_length=100, null=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, null=True)  # Category xoa thi event xoa
@@ -34,6 +35,9 @@ class Event(BaseModel):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        unique_together = ('name', 'category')
 
 
 class TypeTicket(BaseModel):
