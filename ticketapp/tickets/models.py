@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models import CharField
+from ckeditor.fields import RichTextField
 
 
 class User(AbstractUser):
@@ -26,11 +27,11 @@ class Category(BaseModel):
 
 class Event(BaseModel):
     name = models.CharField(max_length=100, null=False)
-    description = models.TextField()
+    description = RichTextField()
     image = models.ImageField(upload_to='event/%Y/%m', null=True)
     address = models.CharField(max_length=100, null=True)
     map = models.CharField(max_length=100, null=True)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, null=True)  # Category xoa thi event xoa
+    category = models.ForeignKey(Category, on_delete=models.RESTRICT, null=True, related_name='events')  # Category xoa thi event xoa
     organizer = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
 
     def __str__(self):
@@ -93,7 +94,7 @@ class CheckIn(BaseModel):
 
 class Review(BaseModel):
     rating = models.IntegerField(default=5)
-    comment = models.TextField()
+    comment = RichTextField()
     user = models.ForeignKey(User, models.CASCADE)
     event = models.ForeignKey(Event, models.CASCADE)
 

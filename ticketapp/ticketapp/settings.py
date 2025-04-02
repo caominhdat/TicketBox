@@ -35,8 +35,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tickets.apps.TicketsConfig'
+    'tickets.apps.TicketsConfig',
+    'ckeditor',
+    'ckeditor_uploader',
+    'debug_toolbar',
 ]
+
+CKEDITOR_UPLOAD_PATH = "ckeditor/images/"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -46,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 import pymysql
@@ -127,3 +133,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = '%s/tickets/static/' % BASE_DIR
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
