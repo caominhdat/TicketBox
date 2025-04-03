@@ -1,4 +1,4 @@
-from tickets.models import Category, Event
+from tickets.models import Category, Event, TypeTicket
 from rest_framework import serializers
 
 
@@ -20,4 +20,10 @@ class EventSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
+        fields = '__all__'
+
+
+class TypeTicketSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TypeTicket
         fields = '__all__'
