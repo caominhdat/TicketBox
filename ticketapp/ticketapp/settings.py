@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'debug_toolbar',
+    'rest_framework',
+    'drf_yasg',
 ]
 
 CKEDITOR_UPLOAD_PATH = "ckeditor/images/"
