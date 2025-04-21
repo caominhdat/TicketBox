@@ -41,7 +41,23 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'rest_framework',
     'drf_yasg',
+    'cloudinary',
+    'oauth2_provider',
 ]
+
+import cloudinary
+cloudinary.config(
+    cloud_name = "dc9h2j58r",
+    api_key = "224919927419796",
+    api_secret = "HFS5MVQG1Vpn3K9w-IMZQBsu39c",
+    secure=True
+)
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+)
+}
 
 CKEDITOR_UPLOAD_PATH = "ckeditor/images/"
 
@@ -139,3 +155,6 @@ MEDIA_ROOT = '%s/tickets/static/' % BASE_DIR
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+CLIENT_ID = 'gr7KDetPsvfSCRGHJrMPDk4pu5HAgykbhb1mKXD7'
+CLIENT_SECRET = 'YSbD9vljj3u4DEJUAgYFaxFUs2sPnqdjHOWhpZhORdK1MvdHzzsq5Tzznx16RGR6ZnnJS1HLwx055rOYipgWF8PiypaPz6EriVe8RSBYJMpBAHO1UHqwoQZ0gRBstXZ5'

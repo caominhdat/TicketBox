@@ -2,10 +2,11 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models import CharField
 from ckeditor.fields import RichTextField
+from cloudinary.models import CloudinaryField
 
 
 class User(AbstractUser):
-    pass
+    avatar = CloudinaryField('avatar', null=True)
 
 
 class BaseModel(models.Model):
