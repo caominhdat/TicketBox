@@ -93,16 +93,6 @@ class CheckIn(BaseModel):
         return self.status
 
 
-class Review(BaseModel):
-    rating = models.IntegerField(default=5)
-    comment = RichTextField()
-    user = models.ForeignKey(User, models.CASCADE)
-    event = models.ForeignKey(Event, models.CASCADE)
-
-    def __str__(self):
-        return self.rating
-
-
 class Notification(BaseModel):
     title = models.CharField(max_length=100, null=False)
     message = models.TextField()
@@ -119,3 +109,18 @@ class Chat(BaseModel):
 
     def __str__(self):
         return self.message
+
+
+class Interaction(BaseModel):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, null=False)
+    class Meta:
+        abstract = True
+
+
+class Comment(Interaction):
+    content = models.CharField(max_length=255, null=False)
+
+
+class Rating(Interaction):
+    rate = models.SmallIntegerField(default=0)

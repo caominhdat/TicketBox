@@ -3,7 +3,7 @@ from django.template.response import TemplateResponse
 from django.utils.safestring import mark_safe
 from django import forms
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
-from .models import Category, Event, TypeTicket, Ticket, Chat, Discount, Payment, CheckIn, Review, Notification
+from .models import Category, Event, TypeTicket, Ticket, Chat, Discount, Payment, CheckIn, Notification, Comment
 from django.urls import path
 from tickets import dao
 
@@ -64,5 +64,5 @@ admin_site.register(Chat)
 admin_site.register(Discount)
 admin_site.register(Payment)
 admin_site.register(CheckIn)
-admin_site.register(Review)
 admin_site.register(Notification)
+admin_site.register(Comment)

@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-_7-e19#4c_u((rv)q5jhycn+&m=90@r!&8ul4*8y5e*9w4*al(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '192.168.111.104', '127.0.0.1']
 
 # Application definition
 
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'cloudinary',
     'oauth2_provider',
+    'corsheaders'
 ]
 
 import cloudinary
@@ -70,7 +71,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 import pymysql
 
@@ -155,6 +159,9 @@ MEDIA_ROOT = '%s/tickets/static/' % BASE_DIR
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+OAUTH2_PROVIDER = {
+    'OAUTH2_BACKEND_CLASS': 'oauth2_provider.oauth2_backends.JSONOAuthLibCore'
+}
 
 CLIENT_ID = 'gr7KDetPsvfSCRGHJrMPDk4pu5HAgykbhb1mKXD7'
 CLIENT_SECRET = 'YSbD9vljj3u4DEJUAgYFaxFUs2sPnqdjHOWhpZhORdK1MvdHzzsq5Tzznx16RGR6ZnnJS1HLwx055rOYipgWF8PiypaPz6EriVe8RSBYJMpBAHO1UHqwoQZ0gRBstXZ5'
